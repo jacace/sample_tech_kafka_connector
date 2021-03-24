@@ -4,14 +4,12 @@ import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
 import org.apache.kafka.common.config.ConfigDef.Type;
 import org.apache.kafka.common.config.ConfigDef.Importance;
-
 import java.util.Map;
-
 
 public class MySourceConnectorConfig extends AbstractConfig {
 
-  public static final String MY_SETTING_CONFIG = "my.setting";
-  private static final String MY_SETTING_DOC = "This is a setting important to my connector.";
+  public static final String MY_SETTING_CONFIG = "class.setting";
+  private static final String MY_SETTING_DOC = "Name of the class to load";
 
   public MySourceConnectorConfig(ConfigDef config, Map<String, String> parsedConfig) {
     super(config, parsedConfig);
