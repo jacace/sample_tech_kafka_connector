@@ -10,17 +10,19 @@
     <name>sample_tech_kafka_connector</name>
 
     <properties>
-        <kafka.version>0.10.0.0-cp1</kafka.version>
+        <kafka.version>2.7.0</kafka.version>
         <junit.version>4.12</junit.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>connect-api</artifactId>
             <version>${kafka.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

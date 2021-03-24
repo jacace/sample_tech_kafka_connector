@@ -16,12 +16,12 @@ public class MySourceConnector extends SourceConnector {
 
   @Override
   public String version() {
-    return VersionUtil.getVersion();
+    return Utils.getVersion();
   }
 
   @Override
   public Class<? extends Task> taskClass() {
-    return connector.taskClass();
+    return MySourceTask.class;
   }
 
   @Override
@@ -36,7 +36,11 @@ public class MySourceConnector extends SourceConnector {
 
   @Override
   public List<Map<String, String>> taskConfigs(int i) {
-    return connector.taskConfigs(i);
+    List<Map<String, String>> list = connector.taskConfigs(i);
+    for (int j = 0; j < list.size(); j++) {
+       list.get(j).put(Utils.getConnectorTaskName(), connector.taskClass().getName());
+    }
+    return list;
   }
 
   @Override
@@ -45,16 +49,13 @@ public class MySourceConnector extends SourceConnector {
     log.info("Loading config");
     config = new MySourceConnectorConfig(map);
 
-    ClassLoader classLoader = getClass().getClassLoader();
-    Class aClass;
     String className = config.getMy();
-    log.info("Loading class: " + className);
+    log.info("Loading connector class: " + className);
 
     try {
-      aClass = classLoader.loadClass(className);
-      connector = (SourceConnector) aClass.newInstance();
+      connector = SourceConnector.class.cast(new Utils().loadClass(className));
       connector.start(map);
-      log.info("Class loaded");
+      log.info("Connector started");
     } catch (Exception e) {
       e.printStackTrace();
     }
