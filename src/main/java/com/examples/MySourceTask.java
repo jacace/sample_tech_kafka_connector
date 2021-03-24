@@ -1,15 +1,9 @@
 package com.examples;
 
-import org.apache.kafka.connect.data.Field;
-import org.apache.kafka.connect.data.Schema;
-import org.apache.kafka.connect.data.SchemaBuilder;
-import org.apache.kafka.connect.data.Struct;
-import org.apache.kafka.connect.errors.ConnectException;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.apache.kafka.connect.source.SourceTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +13,7 @@ public class MySourceTask extends SourceTask {
   @Override
   public String version() {
     return VersionUtil.getVersion();
+    //this.context.configs()
   }
 
   @Override
