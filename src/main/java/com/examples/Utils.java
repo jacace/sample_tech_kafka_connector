@@ -1,7 +1,8 @@
 package com.examples;
 
-import java.lang.System.Logger;
 import java.util.Map;
+
+import org.slf4j.Logger;
 
 /**
  * Created by jacace on March/2021.
@@ -20,10 +21,18 @@ class Utils {
     }
   }
 
-  public Class loadClass(String className) {
+  public Object loadClass(String className) {
     ClassLoader classLoader = getClass().getClassLoader();
-    Class aClass = classLoader.loadClass(className);
-    return aClass.newInstance();
+    Class aClass = null;
+    Object obj = null;
+    try {
+      aClass = classLoader.loadClass(className);
+      obj = aClass.newInstance();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+
+    return obj;
   }
 
   public static void printConfig(Map<String, String> map, Logger log) {

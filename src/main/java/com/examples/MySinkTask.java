@@ -10,11 +10,10 @@ import java.util.Collection;
 import java.util.Map;
 
 public class MySinkTask extends SinkTask {
-  private static Logger log = LoggerFactory.getLogger(MySinkTask.class);
 
   @Override
   public String version() {
-    return VersionUtil.getVersion();
+    return Utils.getVersion();
   }
 
   @Override
